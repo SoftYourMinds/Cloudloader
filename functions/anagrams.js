@@ -1,5 +1,5 @@
 function anagrams(word, words) {
-  
+   result= "";
 	return words.reduce(function(res, e, index, array){
 	
 		if(words[index].length == word.length){
@@ -11,13 +11,16 @@ function anagrams(word, words) {
 				} else{
 					res = res +"false/";
 				}
-			}	
-		
+			}
 			
+		} else{
+			res = res+"false/";
 		}
-		return res.split("/").indexOf("true") ? true : false;
+		console.log(res);
+		return res.split("").indexOf("true") ? true : false;
+	
 	 },"");
 	 
 	 
-	 //result.split("").indexOf("true") ? true : false;
+	//  result.split("").indexOf("true") ? true : false;
  }
