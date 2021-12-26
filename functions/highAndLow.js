@@ -12,6 +12,9 @@ function highAndLow(numbers){
 	return  min+" "+max;
  }
 
+
+
+
 //  function highAndLow(numbers){
 // 	var numbersArray = numbers.split(" ");
 	
