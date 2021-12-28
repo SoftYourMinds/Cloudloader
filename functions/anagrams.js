@@ -1,26 +1,25 @@
-function anagrams(word, words) {
-   result= "";
-	return words.reduce(function(res, e, index, array){
-	
-		if(words[index].length == word.length){
-			search = e[index].split('');
-	 		for(var i=0; i < word.length; i++){
-				// res = res +""+ word.split("").indexOf(search[i]) > -1 ? "true/" : "false/";
-				if(word.split("").indexOf(search[i]) > -1){
-					res = res + "true/";
-				} else{
-					res = res +"false/";
-				}
-			}
+function anagrams(word, words) { //ищет все анаграмы слова в массиве и выводит их, если в массиве нет аннограм то выводит пустой массив
+
+	var chek= new Array();
+	var result = new Array();
+
+	for(var i = 0; i < words.length; i++){
+		if(words[i].length == word.length){
 			
-		} else{
-			res = res+"false/";
-		}
-		console.log(res);
-		return res.split("").indexOf("true") ? true : false;
-	
-	 },"");
-	 
-	 
-	//  result.split("").indexOf("true") ? true : false;
+			chek[i] = word.split('').reduce((r, e )=>{
+				if(words[i].indexOf(e) > -1){
+					r.push('true');
+				} else{
+					r.push('false');
+				}
+				return r;
+			},[]);
+
+			if(chek[i].indexOf('false') == -1){
+				result.push(words[i]);
+			}
+	}
+
  }
+	return result;
+}
