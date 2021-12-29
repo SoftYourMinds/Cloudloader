@@ -1,25 +1,71 @@
 function anagrams(word, words) { //ищет все анаграмы слова в массиве и выводит их, если в массиве нет аннограм то выводит пустой массив
+	var counter = new Array();
+	for(var i = 0; i< words.length; i++){
+		words.reduce((r, e, j, array)=> {
+			 if((word != words[i])&&(word.length == words[i].length)){	
+				 if(word.split('').sort().reduce((res, el)=>{res = res + el; return res;}, "") == e.split('').sort().reduce((res, el)=>{res = res+el; return res;}, '')){
+	
+					 counter.push(words[i])
+				 }
 
-	var chek= new Array();
-	var result = new Array();
-
-	for(var i = 0; i < words.length; i++){
-		if((words[i].length == word.length)&&(word != words[i])){
-			
-			chek[i] = word.split('').reduce((r, e )=>{
-				if(words[i].indexOf(e) > -1){
-					r.push('true');
-				} else{
-					r.push('false');
-				}
-				return r;
-			},[]);
-
-			if(chek[i].indexOf('false') == -1){
-				result.push(words[i]);
-			}
+			 }
+		 
+		 }, "");
+		 return counter;
 	}
-
- }
-	return result;
 }
+
+	// var result = new Array();
+	// for(var i = 0; i < words.length; i++){
+	// 	if((words[i].length == word.length)&&(word != words[i])){
+	// 		if((words[i].split('').sort().reduce((res, el)=>{res = res + el; return res;}, "") == (word.split('').sort().reduce((res, el)=>{res = res + el; return res;}, "")))){
+	// 			result = result.push(words[i]);
+	// 		}		
+	// 	}
+	// }	
+ 
+	// return result;
+	
+// var chek= new Array();
+// var result = new Array();
+
+// for(var i = 0; i < words.length; i++){
+// 	if((words[i].length == word.length)&&(word != words[i])){
+		
+// 		chek[i] = word.split('').reduce((r, e )=>{
+// 			if(words[i].indexOf(e) > -1){
+// 				r.push('true');
+// 			} else{
+// 				r.push('false');
+// 			}
+// 			return r;
+// 		},[]);
+
+// 		if(chek[i].indexOf('false') == -1){
+// 			result.push(words[i]);
+// 		}
+// }
+
+// }
+// return result;
+
+// var chek= new Array();
+// var result = new Array();
+
+// for(var i = 0; i < words.length; i++){
+// 	if((words[i].length == word.length)&&(word != words[i])){
+		
+// 		chek[i] = word.split('').reduce((r, e )=>{
+// 			if(words[i].indexOf(e) > -1){
+// 				r.push('true');
+// 			} else{
+// 				r.push('false');
+// 			}
+// 			return r;
+// 		},[]);
+
+// 		if(chek[i].indexOf('false') == -1){
+// 			result.push(words[i]);
+// 		}
+// }
+
