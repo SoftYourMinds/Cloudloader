@@ -4,7 +4,7 @@ function anagrams(word, words) { //ищет все анаграмы слова �
 	var result = new Array();
 
 	for(var i = 0; i < words.length; i++){
-		if(words[i].length == word.length){
+		if((words[i].length == word.length)&&(word != words[i])){
 			
 			chek[i] = word.split('').reduce((r, e )=>{
 				if(words[i].indexOf(e) > -1){
