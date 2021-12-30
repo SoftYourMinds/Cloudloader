@@ -1,19 +1,15 @@
 function anagrams(word, words) { //ищет все анаграмы слова в массиве и выводит их, если в массиве нет аннограм то выводит пустой массив
-	var counter = new Array();
-	for(var i = 0; i< words.length; i++){
-		words.reduce((r, e, j, array)=> {
-			 if((word != words[i])&&(word.length == words[i].length)){	
-				 if(word.split('').sort().reduce((res, el)=>{res = res + el; return res;}, "") == e.split('').sort().reduce((res, el)=>{res = res+el; return res;}, '')){
-	
-					 counter.push(words[i])
-				 }
-
-			 }
-		 
-		 }, "");
-		 return counter;
-	}
+var counter = new Array();
+	words.reduce((r, e, j, array)=> {
+	 if(word.length == e.length){	
+		 if(word.split('').sort().reduce((res, el)=>{res = res + el; return res;}, "") == e.split('').sort().reduce((res, el)=>{res = res+el; return res;}, '')){
+			 counter.push(e);
+		 }
+	 }
+	 }, "");
+ return counter;
 }
+
 
 	// var result = new Array();
 	// for(var i = 0; i < words.length; i++){
