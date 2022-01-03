@@ -72,3 +72,60 @@ function moveZeros(arr) { // все "0" отправляет в конец ма�
 	
 	return  min+" "+max;
  }
+
+//====================================================
+function sumIntervals(intervals) {
+	// var finalArr = [];
+	
+	// intervals.forEach(e => {
+	// 	finalArr.length = Math.max(finalArr.length, e[1]);
+	// 	for(var i = e[0]; i<e[1]; ++i){
+	// 		finalArr[i] = 1;
+
+	// 	}
+	// 	console.log(finalArr);
+	// });
+	
+	// return finalArr.reduce((r, e)=>{ if(e != "empty") r= r+e; return r; },0);
+	  
+	finalArr = [];
+	
+	intervals.forEach(e => {
+		for(var i = e[0]; i<e[1]; i++){
+			finalArr.push(i);
+		}
+	});
+  finalArr = [...new Set(finalArr)];
+	return finalArr.length;
+ }
+
+
+//============================================================
+function score( dice ) {
+	var points =[[3, 1, 1000], [3,6,600], [3,5,500], [3,4,400],[3,3,300],[3,2,200],[1,1,100],[1,5,50]];
+	var cush =0;
+	var arr = new Array();
+	var k = (dice.reduce((r, e, j, array )=>{
+		if(e == el){
+			dice = dice.slice(j);
+			r++;
+		} return ; 
+	}, 0));
+	dice.forEach(el=>{
+		for(var i = 0; i<5; i++){
+			if(dice[i]==el){
+				var k++;
+			}
+		}
+		var k =
+		console.log(k);
+	// 	points.forEach(([a, b, c])=>{
+	// 		if((a == k)&&(b==el)){
+
+	// 		  cush = cush + parseInt(c);
+	// 		}
+	// 	});
+	// });
+	// return cush;
+	});
+}	
