@@ -101,31 +101,42 @@ function sumIntervals(intervals) {
 
 
 //============================================================
-function score( dice ) {
+//  3 единицы 1000 очков, 1 пятерка 50 очков и т.д всё рассписано в pints 
+function score( dice ) {  // функция выводит количество набранных очков из массива
 	var points =[[3, 1, 1000], [3,6,600], [3,5,500], [3,4,400],[3,3,300],[3,2,200],[1,1,100],[1,5,50]];
-	var cush =0;
+	var score = 0;
+	var k = 0;
 	var arr = new Array();
-	var k = (dice.reduce((r, e, j, array )=>{
-		if(e == el){
-			dice = dice.slice(j);
-			r++;
-		} return ; 
-	}, 0));
-	dice.forEach(el=>{
-		for(var i = 0; i<5; i++){
-			if(dice[i]==el){
-				var k++;
-			}
-		}
-		var k =
-		console.log(k);
-	// 	points.forEach(([a, b, c])=>{
-	// 		if((a == k)&&(b==el)){
+	for(var i=0; i< dice.length; i++){
+		if(arr.indexOf(dice[i])==-1){
+			arr.push(dice[i]);
+			k = dice.reduce((r, e)=>{
+				if(e == dice[i]){
+					r++;
+				}
+				return r; 
+			}, 0);
+			points.forEach(([a, b, c])=>{
+				if((a == k)&&(b==dice[i])){
+			  		score = score + parseInt(c);
+				}
+			});
+		}	
+   }
 
-	// 		  cush = cush + parseInt(c);
-	// 		}
-	// 	});
-	// });
-	// return cush;
-	});
+	return score;
 }	
+
+//=======================================================
+function multiplicationTable(size) { // выводит таблицу умножения
+	var arr = [];
+	for(var i = 0; i < size; i++){
+		arr[i] = []; 
+	  for(var j = 0; j< size; j++){
+		 arr[i][j] = (i+1)*(j+1);
+	  }
+	}
+	
+	return arr; 
+ }
+ 
