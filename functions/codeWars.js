@@ -140,3 +140,24 @@ function multiplicationTable(size) { // выводит таблицу умнож
 	return arr; 
  }
  
+
+ //==============
+ function likes(names) { // who like it in codewars
+	return names.reduce((r,e)=>{
+		if(names.length == 0){
+		  r = "no one likes this"; 
+		} else if(names.length == 1){
+		  r = e+" likes this";
+		} else if(names.length == 2){
+		  r = names[0] +" and "+ names[1] + "like this"; 
+		} else if( names.length == 3){
+		  r = names[0] + ", "+ names[1]+ " and "+ names[2] +" like this";
+		} else{
+		//   r =  parseInt(names[0]) +", "+ parseInt(names[1])+ " and " + parseInt(names.length)-2+ " others like this";
+
+		r = names[0] + ", " +names[1] +" and " + (names.length-2) + " others like this";
+		}
+	  
+	  return r;
+	},"no one likes this");
+  }
