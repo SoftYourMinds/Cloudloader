@@ -87,17 +87,62 @@ function sumIntervals(intervals) {
 	// });
 	
 	// return finalArr.reduce((r, e)=>{ if(e != "empty") r= r+e; return r; },0);
-	  
-	finalArr = [];
+	 //------------- 
+// 	finalArr = [];
 	
-	intervals.forEach(e => {
-		for(var i = e[0]; i<e[1]; i++){
-			finalArr.push(i);
-		}
-	});
-  finalArr = [...new Set(finalArr)];
-	return finalArr.length;
- }
+// 	intervals.forEach(e => {
+// 		for(var i = e[0]; i<e[1]; i++){
+// 			finalArr.push(i);
+// 		}
+// 	});
+//   finalArr = [...new Set(finalArr)];
+// 	return finalArr.length;
+ 
+
+
+	// var finalArr = [];
+	//  for(var i = 0; i<intervals.length; i++){
+	// 	 for(var j = intervals[i][0]; j< intervals[i][1]; j++){
+	// 		finalArr[j] = 1;
+			
+	// 	 }
+	//  }
+
+	// var counter = 0;
+	// for(var i =0; i<finalArr.length; i++){
+	// 	if(finalArr[i] == 1){
+	// 		counter++;
+	// 	}
+	// }
+	//  return counter;
+
+
+
+	// finalArr = 	intervals.reduce((r,e) => {
+	// 	intervals.reduce((res, el)=>{
+
+	// 	},1)
+	// 	for(var i = e[0]; i<e[1]; i++){
+	// 		r[i] = 1;
+	// 	}
+	// 	return r;
+	// },[]);
+
+
+	// return finalArr.reduce((r, e)=>{ if(e != "empty") r= r+e; return r; },0);
+
+	//-------------------------------------------------------
+	//cool 
+	let sum = 0, max = -Infinity;
+	const sortedIntervals = intervals.sort(([a, b], [c, d]) => a == c ? b - d : a - c);
+	for (const [start, stop] of sortedIntervals) {
+	  if (max < start)
+		 max = start;
+	  if (max < stop)
+		 [max, sum] = [stop, sum + stop - max]
+	}
+	return sum;
+}
 
 
 //============================================================
@@ -161,3 +206,18 @@ function multiplicationTable(size) { // выводит таблицу умнож
 	  return r;
 	},"no one likes this");
   }
+
+  //===========================================
+  function comp(array1, array2){
+	var chek;
+	array1 = array1.reduce((r, e, i, array)=>{
+	  array1[i] = e*e;
+	  return array1; 
+	},[]);
+	if(array1.sort() != array2.sort()){
+	  return false;
+	}
+	else{
+	  true;
+	}
+}
