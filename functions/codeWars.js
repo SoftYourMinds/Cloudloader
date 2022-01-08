@@ -208,16 +208,45 @@ function multiplicationTable(size) { // выводит таблицу умнож
   }
 
   //===========================================
-  function comp(array1, array2){
+  function comp(a1, a2){
 	var chek;
-	array1 = array1.reduce((r, e, i, array)=>{
-	  array1[i] = e*e;
-	  return array1; 
+	a1 = a1.reduce((r, e, i, array)=>{
+	  r[i] = parseInt(e)*parseInt(e);
+	  return r;
 	},[]);
-	if(array1.sort() != array2.sort()){
-	  return false;
+
+	return  a1.length == a2.length && a1.sort().every((v,i)=>v === a2.sort()[i]) ? true : false; 
+  }
+
+//===============================
+
+function firstFactorial(num) {  // 
+	var f;
+	for(var i =1; i <= num; ++i ){
+	  f = parseInt(f) * parseInt(i);
 	}
-	else{
-	  true;
+	return f;
+ 
+ }
+
+
+ //==========================
+//Wave Sorting
+ function waveSort(arr) {
+	var finalArr = [];
+	var k = arr.length;
+	for(var i = 0; i < k; i++){
+		if(i % 2 == 0){
+			finalArr.push(parseInt(Math.min(arr)));          
+			arr.slice(arr.indexOf(parseInt(Math.min(arr))));	
+		}
+		else {
+			var max = arr.filter((e)=>parseInt(e)>parseInt(Math.min.apply(null,arr)));
+			
+			finalArr.push(parseInt(Math.min.apply(null, max)));
+			arr.slice(arr.indexOf(parseInt(Math.min.apply(null, max))));
+		} 
+
 	}
-}
+	return finalArr;	 
+ }
