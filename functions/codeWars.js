@@ -235,16 +235,18 @@ function firstFactorial(num) {  //
  function waveSort(arr) {
 	var finalArr = [];
 	var k = arr.length;
-	for(var i = 0; i < k; i++){
-		if(i % 2 == 0){
-			finalArr.push(parseInt(Math.min(arr)));          
-			arr.slice(arr.indexOf(parseInt(Math.min(arr))));	
+	for(var i = 1; i <=k; i++){
+		if(i % 2 != 0){
+			finalArr.push(parseInt(Math.min.apply(null,arr)));          
+			var newArr = arr.slice(arr.indexOf(Math.min.apply(null,arr)));	
+			console.log(newArr);
 		}
 		else {
 			var max = arr.filter((e)=>parseInt(e)>parseInt(Math.min.apply(null,arr)));
 			
 			finalArr.push(parseInt(Math.min.apply(null, max)));
-			arr.slice(arr.indexOf(parseInt(Math.min.apply(null, max))));
+			newArr
+		   arr.slice(arr.indexOf(parseInt(Math.min.apply(null, max))));
 		} 
 
 	}
