@@ -256,6 +256,21 @@ function firstFactorial(num) {  //
 //========================================
 //Array Addition
 
-function ArrayAddition(){
+function ArrayAddition(arr){
+	return arr.reduce((r, e)=>{
+		var sum = 0; 
+		for(var i = 0; i< arr.length; i++){
+			if(( arr[i] != parseInt(e))&&(arr[i]!= Math.max.apply(null, arr))){
+				sum = sum + arr[i];
+
+			}
+			if(sum == parseInt(Math.max.apply(null, arr))){
+				r = true;
+			}
+		}
 	
+		return r == false ? false : true;
+	}, false);
 }
+
+//======================
