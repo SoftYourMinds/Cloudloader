@@ -2,7 +2,7 @@
 
 html {
 	min-height: 100vh;
-	scroll-behavior: smooth;
+	/* scroll-behavior: smooth; */
 }
 
 
@@ -14,6 +14,7 @@ body {
 	font-family: 'Roboto Mono', monospace;
 }
 
+/* 
 .header{
 	width: 100%;
 	height: 200px;
@@ -23,6 +24,80 @@ body {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+} */
+
+#banner {
+	left: 0;
+	margin: 0;
+	top: 0;
+	width: 100%;
+	position: fixed;
 }
 
 
+.block {
+
+	width: 100%;
+	height: 700px;
+	background-color: rgb(84, 160, 8);
+	transform: scale(0.9);
+}
+
+.block1 {
+	background-color: rgb(160, 43, 8);
+}
+
+.lorem {
+	position: relative;
+	right: -12px;
+	width: 25%;
+	z-index: 22;
+	margin-left: 100px;
+	margin-top: 50px;
+}
+
+
+.square {
+	position: relative;
+	width: 150px; 
+	height: 150px;
+	background-color: cornsilk;
+}
+
+.square > div {
+	background-color: red;
+	position: absolute;
+	border: 1px solid;
+	box-sizing: border-box;
+}
+
+
+.top {
+	width: 100%;
+	height: 10px;
+	top: 0px;
+}
+
+.right {
+	height: 100%;
+	width: 10px;
+	right: 0px;
+}
+
+.bottom {
+	width: 100%;
+	height: 10px;
+	bottom: 0px;
+}
+
+.left {
+	height: 100%;
+	width: 10px;
+	left: 0px;
+}
+
+.wrap {
+	padding: 20px;
+	background-color: yellow;
+	box-sizing: border-box;
+}
