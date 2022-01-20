@@ -274,32 +274,59 @@ function arrayAddition(arr) {
 
 //======================
 
-function wordReduction(str){
-	let k = true; 
-	while (k == true) {
-		if (((/ab/).test(str) == true) || ((/ba/).test(str) == true)) {
-			str = str.replace('ba', "c");
-			str = str.replace('ab', "c");
-			k = true;
-
+function wordReduction(str){ // AdvantISS
+	while (true) {
+		if (/ab|ba/.test(str) == true) {
+			str = str.replace(/ba|ab/g, "c");
 		}
-		else if ((/ac/.test(str) == true) || (/ca/.test(str) == true)) {
-			str = str.replace('ac', "b");
-			str = str.replace('ca', "b");
-			k = true;
-
+		else if (/ac|ca/.test(str) == true) {
+			str = str.replace(/ac|ca/g, "b");
 		}
-		else if ((/bc/.test(str) == true) || (/cb/.test(str) == true)) {
-
-			str = str.replace('bc', "a");
-			str = str.replace('cb', "a");
-			k = true;
+		else if (/bc|cb/.test(str) == true) {
+			str = str.replace(/bc|cb/g, "a");
 		}
 		else {
-			return str;
+			return str.length;
 		}
 	}
-
 }
 
+//============================
+function rot13(str) { // символы юникода, с 65 до 97 стоят A-B a-b стоят с 97+ 
+	// String.fromCharCode - декдит строку
+	// String.charCodeAt возвращает зашифрованый в юникод символ 
+	const alf = ['A', 'a', 'B', 'b', 'C', 'c', 'D', 'd', 'E', 'e', 'F', 'f', 'G', 'g', 'H', 'h', 'I', 'i', 'J', 'j', 'K', 'k', 'L', 'l', 'M', 'm', 'N', 'n', 'O', 'o', 'P', 'p', 'Q', 'q', 'R', 'r', 'S', 's', 'T', 't', 'U', 'u', 'V', 'v', 'W', 'w', 'X', 'x', 'Y', 'y', 'Z', 'z'];
+	const length = str.length;
+	str = str.split("").reduce((r, e) => {
+		r = r + "" +e + "~";
+		return r;
+	}, "");
+	console.log("A".charCodeAt(0));
+	console.log("a".charCodeAt(0));
+	console.log(String.fromCharCode("c".charCodeAt(0)+13));
+
+	// str.replace(/[a-z]/g, function(s){
+	// 	return s <= "m" ? s+13
+	// });
+	// str =  alf.reduce((r, e, i, arr) => {
+	//   var think =  i + 26 > arr.length ?  i + 26 - arr.length : i+26;
+	//   let find = new RegExp(arr[i]+"~", "g");	
+	//   r = find.test(r) == true ? r.replace(find, arr[think]+"&") : r;  
+	//   console.log(r) 
+	//   return r;
+	// }, str);
+
+
+	// return str.replace(/&/g, "");
+
+	// return s.replace(/[A-Za-z]/g, function (c) {
+	// 	return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".charAt(
+	// 			 "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm".indexOf(c)
+	// 	);
+	//  } );
+
+	// return str.replace(/[a-z]/ig, function(x){
+	// 	return String.fromCharCode(x.charCodeAt(0) + (x.toLowerCase() <= 'm' ? 13: -13));
+	//  });
+ }
 
