@@ -274,4 +274,32 @@ function arrayAddition(arr) {
 
 //======================
 
+function wordReduction(str){
+	let k = true; 
+	while (k == true) {
+		if (((/ab/).test(str) == true) || ((/ba/).test(str) == true)) {
+			str = str.replace('ba', "c");
+			str = str.replace('ab', "c");
+			k = true;
+
+		}
+		else if ((/ac/.test(str) == true) || (/ca/.test(str) == true)) {
+			str = str.replace('ac', "b");
+			str = str.replace('ca', "b");
+			k = true;
+
+		}
+		else if ((/bc/.test(str) == true) || (/cb/.test(str) == true)) {
+
+			str = str.replace('bc', "a");
+			str = str.replace('cb', "a");
+			k = true;
+		}
+		else {
+			return str;
+		}
+	}
+
+}
+
 
