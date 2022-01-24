@@ -369,12 +369,13 @@ function rot13(str) { // символы юникода, с 65 до 97 стоят
 	//  });
 	 //[-6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20]
 
-return list.reduce((r, e, i) =>{
-	if(e == "k")  return r + "," + e;
+
+// return list.reduce((r, e, i) =>{
+// 	if(e == "k")  return r + "," + e;
 	
-	return r;
-});
-}
+// 	return r;
+// });
+ }
 
 //создать запрос который выведет пиб студента у которого БД и IC  предмет не закрыты  студенты у которых нет не единой работы  по предметам БД и ИС должы учитываться 2 варианта событий,  первый работ нет, второй работы есть но они ещё не оценены 
 
@@ -406,7 +407,7 @@ return list.reduce((r, e, i) =>{
 // 	return mas.join("");
 //  }
  
-function accum(s) {
+function accum(s) { //repeat 
 	s = s.split("").reduce((r, e, i) => {
 		r = r + e.toUpperCase();
 		while (i != 0) {
@@ -417,4 +418,29 @@ function accum(s) {
 		return r;
 	}, "");
 	return s.slice(0, s.length - 1);
+}
+//================================
+// const getEvenNumbers = numbersArray => numbersArray.filter(num => num % 2 == 0);
+
+// =========================================
+// spread operator 
+
+// const sumMinElemets = (arr) => {
+// 	return arr.reduce((r, e) => {
+// 		return r + Math.min(...e);
+// 	}, 0);
+// }
+
+// =====================
+// sort 
+function largestPairSum(numbers){
+	numbers.sort(function(a, b){ return b - a });
+	return numbers[0] + numbers[1];
+}
+
+function comesAfter(str, l) {
+	return str.split("").reduce((r, e, i, arr) => {
+		console.log(arr[i], /\W|\d/.test(arr[i]));
+		return r + (e.toLowerCase() == l.toLowerCase() && /[A-Z a-z]/.test(arr[i+1]) == true && i+1 < arr.length ? arr[i + 1] : "");
+	}, "");
 }
