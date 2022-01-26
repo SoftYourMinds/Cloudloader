@@ -444,3 +444,26 @@ function comesAfter(str, l) {
 		return r + (e.toLowerCase() == l.toLowerCase() && /[A-Z a-z]/.test(arr[i+1]) == true && i+1 < arr.length ? arr[i + 1] : "");
 	}, "");
 }
+
+function wave(str){
+	
+	return [...str].reduce((r, e, i, arr) => {
+		e = str.split("");
+		e[i] = arr[i].toUpperCase();
+		r.push(e.join(""));
+		return r; 
+	}, []);
+	// var doubles = word.map(function(e) {
+	// 	return splice;
+	// });
+	
+	// console.log(k);
+	// return str.split("").reduce((r, e, arr, i) => {
+	//   word = [...str];
+	//   word[i] = word[i].toUpperCase();
+	//   r.push(word.join(""));
+	//   return r; 
+	// }, []);
+
+	const wave = str => [...str].map((c, i) => `${str.slice(0, i)}${c.toUpperCase()}${str.slice(i +  1, str.length)}`).filter(s => /[A-Z]/.test(s))
+ }
