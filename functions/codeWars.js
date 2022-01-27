@@ -406,7 +406,7 @@ function rot13(str) { // символы юникода, с 65 до 97 стоят
 // 	}
 // 	return mas.join("");
 //  }
- 
+
 function accum(s) { //repeat 
 	s = s.split("").reduce((r, e, i) => {
 		r = r + e.toUpperCase();
@@ -433,30 +433,30 @@ function accum(s) { //repeat
 
 // =====================
 // sort 
-function largestPairSum(numbers){
-	numbers.sort(function(a, b){ return b - a });
+function largestPairSum(numbers) {
+	numbers.sort(function (a, b) { return b - a });
 	return numbers[0] + numbers[1];
 }
 
 function comesAfter(str, l) {
 	return str.split("").reduce((r, e, i, arr) => {
 		console.log(arr[i], /\W|\d/.test(arr[i]));
-		return r + (e.toLowerCase() == l.toLowerCase() && /[A-Z a-z]/.test(arr[i+1]) == true && i+1 < arr.length ? arr[i + 1] : "");
+		return r + (e.toLowerCase() == l.toLowerCase() && /[A-Z a-z]/.test(arr[i + 1]) == true && i + 1 < arr.length ? arr[i + 1] : "");
 	}, "");
 }
 
-function wave(str){
-	
+function wave(str) {
+
 	return [...str].reduce((r, e, i, arr) => {
 		e = str.split("");
 		e[i] = arr[i].toUpperCase();
 		r.push(e.join(""));
-		return r; 
+		return r;
 	}, []);
 	// var doubles = word.map(function(e) {
 	// 	return splice;
 	// });
-	
+
 	// console.log(k);
 	// return str.split("").reduce((r, e, arr, i) => {
 	//   word = [...str];
@@ -465,17 +465,17 @@ function wave(str){
 	//   return r; 
 	// }, []);
 
-	const wave = str => [...str].map((c, i) => `${str.slice(0, i)}${c.toUpperCase()}${str.slice(i +  1, str.length)}`).filter(s => /[A-Z]/.test(s))
- }
+	const wave = str => [...str].map((c, i) => `${str.slice(0, i)}${c.toUpperCase()}${str.slice(i + 1, str.length)}`).filter(s => /[A-Z]/.test(s))
+}
 
- //=====================
+//=====================
 
- function removeConsecutiveDuplicates(s) { 
-	return s.split(filter((el, index, arr) => el != arr[index-1]).join(" "));
- }
+function removeConsecutiveDuplicates(s) {
+	return s.split(filter((el, index, arr) => el != arr[index - 1]).join(" "));
+}
 
- //========================гандон проверять всё с некст коммента 
- 
+//========================гандон проверять всё с некст коммента 
+
 // 
 /*
 сначало нужно узнать число промежутков(слотов) между цифрами числа  
@@ -497,19 +497,19 @@ function wave(str){
 
 */
 
- function PlusMinus(num){
+function PlusMinus(num) {
 	let allExp = [];
-	if(getNumberSigns(num) != "not possible"){
+	if (getNumberSigns(num) != "not possible") {
 		allExp = findAllExpressions(num, []);
-		
-		arrZeros =  allExp.map(exp => {
+
+		arrZeros = allExp.map(exp => {
 			let arrZerosElement = exp.split("").reduce((result, element, i, arr) => {
-				if((arr[i] == "-") || (arr[i] == "+")){
-					arr[i+1] =  arr[i] == "-" ? arr[i-1] - arr[i+1] : parseInt(arr[i-1]) + parseInt(arr[i+1]);
+				if ((arr[i] == "-") || (arr[i] == "+")) {
+					arr[i + 1] = arr[i] == "-" ? arr[i - 1] - arr[i + 1] : parseInt(arr[i - 1]) + parseInt(arr[i + 1]);
 				}
-				return [arr.pop(), exp.replace(/[0-9]/g, "")];				
+				return [arr.pop(), exp.replace(/[0-9]/g, "")];
 			});
-			return arrZerosElement;    
+			return arrZerosElement;
 		});
 
 		arrZeros.reduce((element))
@@ -517,9 +517,9 @@ function wave(str){
 		return arrZeros;
 	} else {
 		return "not possible";
-	}			
+	}
 
- }	
+}
 
 // getRandomSing() - возвращает рандомно математический знак "+" или "-"
 
@@ -527,23 +527,23 @@ const getRandomSign = () => { return Math.floor(Math.random() * 2) == 0 ? "+" : 
 
 // getNumberSings() - Возращает количество "слотов под знаки" в числе ИЛИ not possible Если число состоит из одной цифры
 // аргументом функции являеться число
-    // пример: дано число 231 => 2+3+1  количество знаков равно 2(+,+) функция возвращает 2
-	 // пример: дано число 2 => количество знаков 0, функция возвращает not possible
+// пример: дано число 231 => 2+3+1  количество знаков равно 2(+,+) функция возвращает 2
+// пример: дано число 2 => количество знаков 0, функция возвращает not possible
 
-const getNumberSigns = (num) => {	return num.toString().split("").length - 1 == 0 ? "not possible" : num.toString().split("").length-1 } 
+const getNumberSigns = (num) => { return num.toString().split("").length - 1 == 0 ? "not possible" : num.toString().split("").length - 1 }
 
 /* 
 	getRandomExpression() возвращает рандомное выражение состоящие из "+","-"
 	в аргументе функции число знаков  которое нужно получить 
- 		пример: getRandomExpression(4) => "++-+" 
- 		пример: getRandomExpression(2) => "++"
+			 пример: getRandomExpression(4) => "++-+" 
+			 пример: getRandomExpression(2) => "++"
 */
 
-const getRandomExpression = (num, expLength) => { 
+const getRandomExpression = (num, expLength) => {
 	let exp = "";
-	if(expLength != "not possible"){
-		while(true){
-			if(exp.length != expLength) {
+	if (expLength != "not possible") {
+		while (true) {
+			if (exp.length != expLength) {
 				exp = exp + getRandomSign();
 			} else {
 				break;
@@ -553,8 +553,8 @@ const getRandomExpression = (num, expLength) => {
 		return num.toString().split("").reduce((res, el, index) => {
 			let ifSignLast = elArr[index] != undefined ? elArr[index] : "";
 			return res + el + ifSignLast;
-		},"");
-	} else{
+		}, "");
+	} else {
 		return expLength;
 	}
 }
@@ -584,18 +584,18 @@ const getRandomExpression = (num, expLength) => {
 				return arrExp;
 			}
 		}
-                              									
+																			
 	отдельно задание
 	отдельно объяснение 
 	отдельно код
 */
 
 const findAllExpressions = (num, arrExp) => {
-	let exp = getRandomExpression(num, getNumberSigns(num)); 
-	if(arrExp.length != Math.pow(2, getNumberSigns(num))) {
+	let exp = getRandomExpression(num, getNumberSigns(num));
+	if (arrExp.length != Math.pow(2, getNumberSigns(num))) {
 		arrExp.includes(exp) == false ? arrExp.push(exp) : "";
 		return findAllExpressions(num, arrExp);
-	} else{
+	} else {
 		return arrExp;
 	}
 }
