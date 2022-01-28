@@ -359,15 +359,15 @@ function rot13(str) { // символы юникода, с 65 до 97 стоят
 	// arr = arr.reduce((r, e) => { e == "a" ? r.push(e) : ""; return r }, []).concat(arr.reduce((r, e) => { e != "a" ? r.push(e) : ""; return r; }, []));
 	// return arr.join(",").replace(/a,/g, "");
 
-	//  list.reduce((acc, curr, i) => {
-	// 	 if (i == 0) return curr.toString();
-	// 	 if (list[i - 1] == curr - 1 && list[i + 1] == curr + 1) return acc;
-	// 	 console.log(acc);
-	// 	 if (list[i - 2] == curr - 2 && list[i - 1] == curr - 1) return acc + "-" + curr;
-	// 	 console.log(acc);
-	// 	 return acc + "," + curr;
-	//  });
-	 //[-6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20]
+	 list.reduce((acc, curr, i) => {
+		 if (i == 0) return curr.toString();
+		 if (list[i - 1] == curr - 1 && list[i + 1] == curr + 1) return acc;
+		 console.log(acc);
+		 if (list[i - 2] == curr - 2 && list[i - 1] == curr - 1) return acc + "-" + curr;
+		 console.log(acc);
+		 return acc + "," + curr;
+	 });
+
 
 
 // return list.reduce((r, e, i) =>{
@@ -376,27 +376,6 @@ function rot13(str) { // символы юникода, с 65 до 97 стоят
 // 	return r;
 // });
  }
-
-//создать запрос который выведет пиб студента у которого БД и IC  предмет не закрыты  студенты у которых нет не единой работы  по предметам БД и ИС должы учитываться 2 варианта событий,  первый работ нет, второй работы есть но они ещё не оценены 
-
-//создать запрос который выведет ПИБ преподавателей которые вели или ведут у студента баришова максима предметы 
-
-//создать запрос который выведет ПИБ Студента у которого самый большой бал по дисцыплинам БД и ИС с лаб раб "ОДЗ" если таких студентов несколько то вівести того у которого работа сдана раньше
-/*
-1) я узнал что нужно фильтровать мысли и направлять их в позитивное русло 
-отслеживать мысли в течении дня
-заниматься визуализцией событий 
-если сравнить мысли и лупу то лучи солнца что на неё светят это мы а лупа отображает то как мы думаем и как концентрируемься на цели, если 1000 мыслей направлять в одно русло то получится один большой поток мыслей, так как делает это лупа с лучами солнца
-+ мне понравилось выражение про костёр и искры гд 2 это наши мысли они появляються в следствии роботы нашего мозга то есть горения костра и вылетают в виде искр и так же быстро исчезают 
-
-метод утверждения, очень полезная штука менят твоё отношение к предстоящим задачам, соответсвенно с другим настроем выполняемость тоже будет другой(нужен позитивный настрой тогда будет позитивный результат)
-успех влечет за собой новый успех 
-
-нужно учится признавать свои достоинста и победы или нахоидть их для того что бы вызывать у себя чувство гордости и успеха 
-
-подсознание это поле, которое выращивает семена наших мыслей каждое семено, каждая ситуация заложена в нашем и подсознании и наша реакция будет зависить от того какое мы семено заложили( если мысли были про то что я плохой собеседник то в подсознании выскочит это правило и мы так и будем вести себя в этой ситуации)
-*/
-
 
 // function numberLetter(a, i) {
 // 	let mas = [];
@@ -474,60 +453,40 @@ function removeConsecutiveDuplicates(s) {
 	return s.split(filter((el, index, arr) => el != arr[index - 1]).join(" "));
 }
 
-//========================гандон проверять всё с некст коммента 
+//========================
 
-// 
-/*
-сначала нужно узнать число промежутков(слотов) между цифрами числа  
-то есть место для + или - 
-например если число состоит из 5 цифр то количество мест для знаков + - будет 4 (число 23456  2+3+4-5+6  знаков 4 цифр 5)
-дальше нужно узнать число всех комбинаций
-для каждого слота под знак есть 2 варианта подстановки либо + либо - 
-таких подстановок в этом случае 4, и с помощью формулы 2*2*2*2 = узнаю количество всех возможных способов подстановки "+""-" в 5 значном число это будет 16 
-
-Теперь я выбрал не самый лучший способ возможно, но по другому не знаю как :)
-рандомно подбирать правильные значения
-
-у меня  в коде рандомно будет генерирроваться какое то выражение)(+,-) и я его буду проверять со значениями которые уже генерировались 
-если выражение новое записываем в массив есть нет то ничего не делаем 
-и так до тех пор пока количество выражений не будет равняться количеству всех возможных комбинаций знаков в числе 
-
-и останеться только узнать выражения которые равняються нулю если такие вообще будут 
-а не так сложно как я думал во время тестового задания начале )
-
-*/
 function PlusMinus(num) {
 	let allExp = [];
 	if (getNumberSigns(num) != "not possible") {
 		allExp = findAllExpressions(num, []);
 		arrZeros = allExp.map(exp => {
-			let arrZerosElement = exp.split("").reduce((result, element, i, arr) => {
+			let arrZerosElement = [];
+			let arr = exp.split("");
+			for (let i = 0; i < arr.length; i++) {
 				if ((arr[i] == "-") || (arr[i] == "+")) {
 					arr[i + 1] = arr[i] == "-" ? arr[i - 1] - arr[i + 1] : parseInt(arr[i - 1]) + parseInt(arr[i + 1]);
 				}
-				return arr[arr.length - 1] == 0 ? [arr[arr.length - 1], exp.replace(/[0-9]/g, "")] : "";
-			});
+			}
+			arr[arr.length - 1] == 0 ? arrZerosElement.push(exp.replace(/[0-9]/g, "")) : arrZerosElement.push("");
 			return arrZerosElement;
 		});
 		arrZeros = arrZeros.filter(el => el != "");
 		if (arrZeros.length == 0) return "not possible";
-		else if (arrZeros.length == 1) return arrZeros[0][1];
+		else if (arrZeros.length == 1) return arrZeros[0].toString();
 		else {
 			let numberMinus = [];
 			for (let i = 0; i < arrZeros.length; i++) {
 				let count = 0;
 				let j = 0;
 				while (j != getNumberSigns(num)) {
-					arrZeros[i][1][j] == "-" ? count++ : "";
+					arrZeros[i][j] == "-" ? count++ : "";
 					j++;
 				}
 				numberMinus.push(count);
 			}
-			return arrZeros[numberMinus.indexOf(Math.max.apply(null, numberMinus))][1];
+			return arrZeros[numberMinus.indexOf(Math.max.apply(null, numberMinus))].toString();
 		}
-	} else {
-		return "not possible";
-	}
+	} else return "not possible";
 }
 
 const getRandomSign = () => { return Math.floor(Math.random() * 2) == 0 ? "+" : "-" }
@@ -543,14 +502,12 @@ const getRandomExpression = (num, expLength) => {
 				exp = exp + getRandomSign();
 			} else break;
 		}
-		elArr = exp.split("");
+		arrSign = exp.split("");
 		return num.toString().split("").reduce((res, el, index) => {
-			let ifSignLast = elArr[index] != undefined ? elArr[index] : "";
+			let ifSignLast = arrSign[index] != undefined ? arrSign[index] : "";
 			return res + el + ifSignLast;
 		}, "");
-	} else {
-		return expLength;
-	}
+	} else return expLength;
 }
 
 const findAllExpressions = (num, arrExp) => {
@@ -560,8 +517,6 @@ const findAllExpressions = (num, arrExp) => {
 		return findAllExpressions(num, arrExp);
 	} else return arrExp;
 }
-
- 
 
 
  
