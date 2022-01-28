@@ -478,7 +478,7 @@ function removeConsecutiveDuplicates(s) {
 
 // 
 /*
-сначало нужно узнать число промежутков(слотов) между цифрами числа  
+сначала нужно узнать число промежутков(слотов) между цифрами числа  
 то есть место для + или - 
 например если число состоит из 5 цифр то количество мест для знаков + - будет 4 (число 23456  2+3+4-5+6  знаков 4 цифр 5)
 дальше нужно узнать число всех комбинаций
@@ -496,58 +496,52 @@ function removeConsecutiveDuplicates(s) {
 а не так сложно как я думал во время тестового задания начале )
 
 */
-
 function PlusMinus(num) {
 	let allExp = [];
 	if (getNumberSigns(num) != "not possible") {
 		allExp = findAllExpressions(num, []);
-
 		arrZeros = allExp.map(exp => {
 			let arrZerosElement = exp.split("").reduce((result, element, i, arr) => {
 				if ((arr[i] == "-") || (arr[i] == "+")) {
 					arr[i + 1] = arr[i] == "-" ? arr[i - 1] - arr[i + 1] : parseInt(arr[i - 1]) + parseInt(arr[i + 1]);
 				}
-				return [arr.pop(), exp.replace(/[0-9]/g, "")];
+				return arr[arr.length - 1] == 0 ? [arr[arr.length - 1], exp.replace(/[0-9]/g, "")] : "";
 			});
 			return arrZerosElement;
 		});
-
-		arrZeros.reduce((element))
-
-		return arrZeros;
+		arrZeros = arrZeros.filter(el => el != "");
+		if (arrZeros.length == 0) return "not possible";
+		else if (arrZeros.length == 1) return arrZeros[0][1];
+		else {
+			let numberMinus = [];
+			for (let i = 0; i < arrZeros.length; i++) {
+				let count = 0;
+				let j = 0;
+				while (j != getNumberSigns(num)) {
+					arrZeros[i][1][j] == "-" ? count++ : "";
+					j++;
+				}
+				numberMinus.push(count);
+			}
+			return arrZeros[numberMinus.indexOf(Math.max.apply(null, numberMinus))][1];
+		}
 	} else {
 		return "not possible";
 	}
-
 }
-
-// getRandomSing() - возвращает рандомно математический знак "+" или "-"
 
 const getRandomSign = () => { return Math.floor(Math.random() * 2) == 0 ? "+" : "-" }
 
-// getNumberSings() - Возращает количество "слотов под знаки" в числе ИЛИ not possible Если число состоит из одной цифры
-// аргументом функции являеться число
-// пример: дано число 231 => 2+3+1  количество знаков равно 2(+,+) функция возвращает 2
-// пример: дано число 2 => количество знаков 0, функция возвращает not possible
-
 const getNumberSigns = (num) => { return num.toString().split("").length - 1 == 0 ? "not possible" : num.toString().split("").length - 1 }
-
-/* 
-	getRandomExpression() возвращает рандомное выражение состоящие из "+","-"
-	в аргументе функции число знаков  которое нужно получить 
-			 пример: getRandomExpression(4) => "++-+" 
-			 пример: getRandomExpression(2) => "++"
-*/
 
 const getRandomExpression = (num, expLength) => {
 	let exp = "";
+
 	if (expLength != "not possible") {
 		while (true) {
 			if (exp.length != expLength) {
 				exp = exp + getRandomSign();
-			} else {
-				break;
-			}
+			} else break;
 		}
 		elArr = exp.split("");
 		return num.toString().split("").reduce((res, el, index) => {
@@ -559,54 +553,14 @@ const getRandomExpression = (num, expLength) => {
 	}
 }
 
-/* 
-	findAllExpressions() - выводит массив всех возможных вариантов варажений 
-	Аргументы функции - "num" число у которого мы хотим узнать количество возможных выражений 
-								"arrExp" результирующий массив
-	Примеры - findAllExpressions(12, []) => ['+', '-']
-				 findAllExpressions(123, []) => ['+-', '++', '-+', '--']	 
-	
-	Как работает функция? 			 
-		const findAllExpressions = (num, arrExp) => { 
-
-			let exp = getRandomExpression(getNumberSigns(num));  // получаем вариант выражение которое должны получить из функции PlusMinus для числа "num"
-			
-			if(arrExp.length != Math.pow(2, getNumberSigns(num))) { // проверяем является ли длинна результирующего массива равной выражению Math.pow(2, getNumberSigns(num))
-
-				// Math.pow(2, getNumberSigns(num)) - // по сути данное выражение есть формулой комбинаторики  N=n1*n2*n3*...*nk 
-				// "2" - это количество знаков из которых мы выбираем (в этом случае нам нужен только "+" и "-")
-				//  getNumberSigns(num) - возращает количество слотов под знаки(+,-) для числа "num" 
-				//  так мы узнаем количество всех возможных комбинаций + и - для числа "num" 
-				
-				arrExp.includes(exp) == false ? arrExp.push(exp) : ""; // если выражение не включаеться в результирующий массив то  пушим его, если включаеться ничего не делаем 
-				return findAllExpressions(num, arrExp);  // ну и вызываем функцию ещё раз только с новым значением результирующего массива  
-			} else{ // функция будет выполняться до тех пор пока длинна результирующего массива не будет совпадать с количеством возможных комбинаций 
-				return arrExp;
-			}
-		}
-																			
-	отдельно задание
-	отдельно объяснение 
-	отдельно код
-*/
-
 const findAllExpressions = (num, arrExp) => {
 	let exp = getRandomExpression(num, getNumberSigns(num));
 	if (arrExp.length != Math.pow(2, getNumberSigns(num))) {
 		arrExp.includes(exp) == false ? arrExp.push(exp) : "";
 		return findAllExpressions(num, arrExp);
-	} else {
-		return arrExp;
-	}
+	} else return arrExp;
 }
 
-// result = arr[i-1] + arr[i+1]
-// if(el == "-"){
-// 	result = result - arr[i+1];
-// }
-// result = result 
-// [++]
-// [123]
  
 
 
