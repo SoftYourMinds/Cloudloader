@@ -293,7 +293,7 @@ function wordReduction(str){ // AdvantISS
 
 //============================
 function rot13(str) { // символы юникода, с 65 до 97 стоят A-B a-b стоят с 97+ 
-	// String.fromCharCode - декдит строку
+	// String.fromCharCode - декодит строку
 	// String.charCodeAt возвращает зашифрованый в юникод символ 
 	const alf = ['A', 'a', 'B', 'b', 'C', 'c', 'D', 'd', 'E', 'e', 'F', 'f', 'G', 'g', 'H', 'h', 'I', 'i', 'J', 'j', 'K', 'k', 'L', 'l', 'M', 'm', 'N', 'n', 'O', 'o', 'P', 'p', 'Q', 'q', 'R', 'r', 'S', 's', 'T', 't', 'U', 'u', 'V', 'v', 'W', 'w', 'X', 'x', 'Y', 'y', 'Z', 'z'];
 	const length = str.length;
@@ -518,5 +518,7 @@ const findAllExpressions = (num, arrExp) => {
 	} else return arrExp;
 }
 
+
+const getMiddle = (s) => s.length % 2 == 0 ?  s.slice(s.length / 2-1, s.length / 2 + 1) : s.substr(Number(s.length / 2), 1)
 
  
